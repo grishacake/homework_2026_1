@@ -44,8 +44,4 @@ function transform (obj, transformFn) {
     }
 
     return transformFn(obj);
-};
-
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = transform;
 }
