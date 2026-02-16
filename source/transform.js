@@ -25,16 +25,18 @@
  * @returns {Object|Array} Новый объект с преобразованными значениями
  */
 function transform (obj, transformFn) {
-    if (obj === null) {
-        return null;
+    if (typeof transformFn !== 'function') {
+        throw new TypeError('transformFn must be a function');
+    }
+
+    if (obj === null || typeof obj !== 'object' && !Array.isArray(obj)) {
+        return transformFn(obj);
     }
 
     if (typeof obj === 'object' && !Array.isArray(obj)) {
         const result = {};
         for (const key in obj) {
-            if (Object.hasOwnProperty.call(obj, key)) {
-                result[key] = transform(obj[key], transformFn);
-            }
+            result[key] = transform(obj[key], transformFn);
         }
         return result;
     }
