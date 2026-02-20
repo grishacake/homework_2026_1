@@ -24,12 +24,12 @@
  * 
  * @returns {Object|Array} Новый объект с преобразованными значениями
  */
-function transform (obj, transformFn) {
+const transform = (obj, transformFn) => {
     if (typeof transformFn !== 'function') {
         throw new TypeError('transformFn must be a function');
     }
 
-    if (obj === null || typeof obj !== 'object' && !Array.isArray(obj)) {
+    if (obj === null || typeof obj !== 'object') {
         return transformFn(obj);
     }
 
@@ -46,4 +46,4 @@ function transform (obj, transformFn) {
     }
 
     return transformFn(obj);
-}
+};
